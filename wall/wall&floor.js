@@ -231,12 +231,12 @@ var render = function(){
     image2 = document.getElementById("texImage2");
     configureTexture( image2 );
 
-    gl.bindBuffer( gl.ARRAY_BUFFER, vBuffer );
+    /*gl.bindBuffer( gl.ARRAY_BUFFER, vBuffer );
     gl.bufferData( gl.ARRAY_BUFFER, flatten(Fvertices), gl.STATIC_DRAW );
     gl.bindBuffer( gl.ARRAY_BUFFER, tBuffer );
     gl.bufferData( gl.ARRAY_BUFFER, flatten(FtexCoords), gl.STATIC_DRAW );
     gl.vertexAttribPointer( vTexCoord, 2, gl.FLOAT, false, 0, 0 );
-    gl.enableVertexAttribArray( vTexCoord );
+    gl.enableVertexAttribArray( vTexCoord ); */
 
     gl.drawArrays( gl.TRIANGLES, numVertices, numVertices);
 

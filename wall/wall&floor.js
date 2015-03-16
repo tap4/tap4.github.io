@@ -150,8 +150,8 @@ window.onload = function init() {
     image2 = document.getElementById("texImage2");
     configureTexture( image );
 
-    document.getElementById("MagFilter").innerHTML = "gl.NEAREST";
-    document.getElementById("MinFilter").innerHTML = "gl.NEAREST";
+    //document.getElementById("MagFilter").innerHTML = "gl.NEAREST";
+    //document.getElementById("MinFilter").innerHTML = "gl.NEAREST";
 
 
     proLoc = gl.getUniformLocation( program, "projection" );

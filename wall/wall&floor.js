@@ -228,8 +228,8 @@ var render = function(){
 
     gl.drawArrays( gl.TRIANGLES, 0, numVertices);
 
-    image2 = document.getElementById("texImage2");
-    //configureTexture( image2 );
+   
+    configureTexture( image2 );
 
     gl.drawArrays( gl.TRIANGLES, numVertices, numVertices);
     

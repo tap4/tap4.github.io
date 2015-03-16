@@ -19,13 +19,18 @@ var texCoordsArray = [];
 
 var texture;
 
+//Two variables to help us switch from the wall to Floor for rendering
+var currentVerts;
+var currentTexs;
+var renderFloorNow = false;
+
 var vBuffer;
 var vTexCoord;
 var tBuffer;
 var vPosition;
 
-var image;
-var image2;
+var WallImage;
+var FloorImage;
 
 var movement = false;
 var spinX = 0;
@@ -40,20 +45,12 @@ var mvLoc;
 
 // Tveir þríhyrningar sem mynda spjald í z=0 planinu
 var vertices = [
-    //Wall
     vec4( -10.0, -1.0, 0.0, 1.0 ),
     vec4(  10.0, -1.0, 0.0, 1.0 ),
     vec4(  10.0,  10.0, 0.0, 1.0 ),
     vec4(  10.0,  10.0, 0.0, 1.0 ),
     vec4( -10.0,  10.0, 0.0, 1.0 ),
     vec4( -10.0, -1.0, 0.0, 1.0 )
-    //Floor
-    /*vec4( -10.0,  -1.0, -10.0, 1.0 ),
-    vec4(  10.0,  -1.0, -10.0, 1.0 ),
-    vec4(  10.0,  -1.0, 0.0, 1.0 ),
-    vec4(  10.0,  -1.0, 0.0, 1.0 ),
-    vec4( -10.0,  -1.0, 0.0, 1.0 ),
-    vec4( -10.0,  -1.0, -10.0, 1.0 )*/
 ];
 
 //Floor Vertices
@@ -113,8 +110,6 @@ window.onload = function init() {
     
     gl.enable(gl.DEPTH_TEST);
 
-    
-
 
     document.getElementById("MagFilter").innerHTML = "gl.NEAREST";
     document.getElementById("MinFilter").innerHTML = "gl.NEAREST";
@@ -126,7 +121,6 @@ window.onload = function init() {
     var proj = perspective( 50.0, 1.0, 0.2, 100.0 );
     gl.uniformMatrix4fv(proLoc, false, flatten(proj));
     
-
     //event listeners for mouse
     canvas.addEventListener("mousedown", function(e){
         movement = true;
@@ -177,6 +171,21 @@ window.onload = function init() {
 var render = function(){
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+    wallImage = document.getElementById("texImage");
+    floorImage = document.getElementById("texImage2");
+
+    if (renderFloorNow)
+        {
+            currentVerts = Fvertices;
+            currentTexs =  FtexCoords;
+            image = floorImage;
+        }
+    if (!renderFloorNow)
+    {
+            currentVerts = vertices;
+            currentTexs =  texCoords;
+            image = wallImage;
+    }
     //
     //  Load shaders and initialize attribute buffers
     //
@@ -185,7 +194,7 @@ var render = function(){
     
     vBuffer = gl.createBuffer();
     gl.bindBuffer( gl.ARRAY_BUFFER, vBuffer );
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW );
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(currentVerts), gl.STATIC_DRAW );
     
     vPosition = gl.getAttribLocation( program, "vPosition" );
     gl.vertexAttribPointer( vPosition, 4, gl.FLOAT, false, 0, 0 );
@@ -193,7 +202,7 @@ var render = function(){
     
     tBuffer = gl.createBuffer();
     gl.bindBuffer( gl.ARRAY_BUFFER, tBuffer );
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(texCoords), gl.STATIC_DRAW );
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(currentTexs), gl.STATIC_DRAW );
     
     vTexCoord = gl.getAttribLocation( program, "vTexCoord" );
     gl.vertexAttribPointer( vTexCoord, 2, gl.FLOAT, false, 0, 0 );
@@ -202,8 +211,7 @@ var render = function(){
     // Seinni leið til að ná í mynd: Ná í úr html-skrá:
     //
     
-    image = document.getElementById("texImage");
-    image2 = document.getElementById("texImage2");
+    
     configureTexture( image );
 
     // staðsetja áhorfanda og meðhöndla músarhreyfingu

@@ -121,14 +121,11 @@ window.onload = function init() {
     
     vBuffer = gl.createBuffer();
     
-
     vPosition = gl.getAttribLocation( program, "vPosition" );
     gl.vertexAttribPointer( vPosition, 4, gl.FLOAT, false, 0, 0 );
     gl.enableVertexAttribArray( vPosition );
     
     tBuffer = gl.createBuffer();
-    gl.bindBuffer( gl.ARRAY_BUFFER, tBuffer );
-    gl.bufferData( gl.ARRAY_BUFFER, flatten(texCoords), gl.STATIC_DRAW );
     
     vTexCoord = gl.getAttribLocation( program, "vTexCoord" );
     gl.vertexAttribPointer( vTexCoord, 2, gl.FLOAT, false, 0, 0 );
@@ -204,6 +201,8 @@ var render = function(){
 
     gl.bindBuffer( gl.ARRAY_BUFFER, vBuffer );
     gl.bufferData( gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW );
+    gl.bindBuffer( gl.ARRAY_BUFFER, tBuffer );
+    gl.bufferData( gl.ARRAY_BUFFER, flatten(texCoords), gl.STATIC_DRAW );
 
 
     // staðsetja áhorfanda og meðhöndla músarhreyfingu

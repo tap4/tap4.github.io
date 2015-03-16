@@ -77,7 +77,7 @@ var texCoords = [
    
 ];
 var FtexCoords =[
- vec2(  0.0, 0.0 ),
+    vec2(  0.0, 0.0 ),
     vec2( 20.0, 0.0 ),
     vec2( 20.0, 2.0 ),
     vec2( 20.0, 2.0 ),
@@ -92,8 +92,6 @@ function configureTexture( image ) {
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
     gl.texImage2D( gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image );
     gl.generateMipmap( gl.TEXTURE_2D );
-    //gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE );
-    //gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE );
     gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT );
     gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT );
     gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST );
@@ -143,7 +141,7 @@ window.onload = function init() {
     image = document.getElementById("texImage");
     image2 = document.getElementById("texImage2");
     configureTexture( image );
-    
+
 
     document.getElementById("MagFilter").innerHTML = "gl.NEAREST";
     document.getElementById("MinFilter").innerHTML = "gl.NEAREST";
@@ -205,15 +203,6 @@ window.onload = function init() {
 
 var render = function(){
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-    //gl.bindBuffer( gl.ARRAY_BUFFER, vBuffer );
-    //gl.bufferData( gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW );
-    //gl.bindBuffer( gl.ARRAY_BUFFER, tBuffer );
-   // gl.bufferData( gl.ARRAY_BUFFER, flatten(texCoords), gl.STATIC_DRAW );
-    //gl.vertexAttribPointer( vTexCoord, 2, gl.FLOAT, false, 0, 0 );
-    //gl.enableVertexAttribArray( vTexCoord );
-
-    
 
     // staðsetja áhorfanda og meðhöndla músarhreyfingu
     var mv = lookAt( vec3(0.0, 0.0, zDist), vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0) );

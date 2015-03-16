@@ -228,6 +228,9 @@ var render = function(){
 
     gl.drawArrays( gl.TRIANGLES, 0, numVertices);
 
+    image2 = document.getElementById("texImage2");
+    configureTexture( image2 );
+
     gl.bindBuffer( gl.ARRAY_BUFFER, vBuffer );
     gl.bufferData( gl.ARRAY_BUFFER, flatten(Fvertices), gl.STATIC_DRAW );
     gl.bindBuffer( gl.ARRAY_BUFFER, tBuffer );

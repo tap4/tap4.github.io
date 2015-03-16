@@ -143,6 +143,7 @@ window.onload = function init() {
     image = document.getElementById("texImage");
     image2 = document.getElementById("texImage2");
     configureTexture( image );
+    
 
     document.getElementById("MagFilter").innerHTML = "gl.NEAREST";
     document.getElementById("MinFilter").innerHTML = "gl.NEAREST";
@@ -212,7 +213,7 @@ var render = function(){
     //gl.vertexAttribPointer( vTexCoord, 2, gl.FLOAT, false, 0, 0 );
     //gl.enableVertexAttribArray( vTexCoord );
 
-    configureTexture( image );
+    
 
     // staðsetja áhorfanda og meðhöndla músarhreyfingu
     var mv = lookAt( vec3(0.0, 0.0, zDist), vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0) );

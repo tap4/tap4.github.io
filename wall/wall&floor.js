@@ -239,6 +239,8 @@ var render = function(){
     gl.enableVertexAttribArray( vTexCoord ); */
 
     gl.drawArrays( gl.TRIANGLES, numVertices, numVertices);
+    image1 = document.getElementById("texImage1");
+    configureTexture( image1 );
 
     requestAnimFrame(render);
 }

@@ -205,6 +205,14 @@ window.onload = function init() {
 var render = function(){
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
+    //gl.bindBuffer( gl.ARRAY_BUFFER, vBuffer );
+    //gl.bufferData( gl.ARRAY_BUFFER, flatten(vertices), gl.STATIC_DRAW );
+    //gl.bindBuffer( gl.ARRAY_BUFFER, tBuffer );
+   // gl.bufferData( gl.ARRAY_BUFFER, flatten(texCoords), gl.STATIC_DRAW );
+    //gl.vertexAttribPointer( vTexCoord, 2, gl.FLOAT, false, 0, 0 );
+    //gl.enableVertexAttribArray( vTexCoord );
+
+    
 
     // staðsetja áhorfanda og meðhöndla músarhreyfingu
     var mv = lookAt( vec3(0.0, 0.0, zDist), vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0) );

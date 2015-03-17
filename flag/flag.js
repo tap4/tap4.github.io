@@ -294,14 +294,11 @@ var render = function(){
     
     gl.uniformMatrix4fv(mvLoc, false, flatten(mv));
 
-    gl.drawArrays( gl.TRIANGLES, 0, numVertices);
-
-   
     configureTexture( image2 );
-
-    gl.drawArrays( gl.TRIANGLES, numVertices, numVertices);
-    
+    gl.drawArrays( gl.TRIANGLES, 0, numVerticesPole);
     configureTexture( image );
 
+    gl.drawArrays( gl.TRIANGLES, numVerticesPole, numVertices);
+    
     requestAnimFrame(render);
 }

@@ -297,9 +297,9 @@ var render = function(){
 
     configureTexture( image2 );
     gl.drawArrays( gl.TRIANGLES, 0, numVerticesPole);
-    configureTexture( image );
+    //configureTexture( image );
 
-    gl.drawArrays( gl.TRIANGLES, numVerticesPole, numVertices);
+    //gl.drawArrays( gl.TRIANGLES, numVerticesPole, numVertices);
     
     requestAnimFrame(render);
 }

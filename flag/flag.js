@@ -33,6 +33,7 @@ var spinX = 0;
 var spinY = 0;
 var origX;
 var origY;
+var points = [];
 
 var zDist = -5.0;
 
@@ -47,14 +48,15 @@ var vertices = [
     vec4(  5.0,   2.5, 0.0, 1.0 ),
     vec4(  5.0,   2.5, 0.0, 1.0 ),
     vec4(  0.0,   2.5, 0.0, 1.0 ),
-    vec4(  0.0,   0.0, 0.0, 1.0 ),
+    vec4(  0.0,   0.0, 0.0, 1.0 )
     //Pole
+    /*
     vec4( -1.0,  -1.0, -10.0, 1.0 ),
     vec4(  1.0,  -1.0, -10.0, 1.0 ),
     vec4(  1.0,  -1.0, 0.0, 1.0 ),
     vec4(  1.0,  -1.0, 0.0, 1.0 ),
     vec4( -1.0,  -1.0, 0.0, 1.0 ),
-    vec4( -10.0,  -1.0, -10.0, 1.0 )
+    vec4( -10.0,  -1.0, -10.0, 1.0 )*/
 ];
 
 //Floor Vertices
@@ -69,6 +71,30 @@ var Fvertices = [
 
 // Mynsturhnit fyrir spjaldið
 var texCoords = [
+    vec2(  0.0, 0.0 ),
+    vec2( 20.0, 0.0 ),
+    vec2( 20.0, 2.0 ),
+    vec2( 20.0, 2.0 ),
+    vec2(  0.0, 2.0 ),
+    vec2(  0.0, 0.0 ),
+    vec2(  0.0, 0.0 ),
+    vec2( 20.0, 0.0 ),
+    vec2( 20.0, 2.0 ),
+    vec2( 20.0, 2.0 ),
+    vec2(  0.0, 2.0 ),
+    vec2(  0.0, 0.0 ),
+    vec2(  0.0, 0.0 ),
+    vec2( 20.0, 0.0 ),
+    vec2( 20.0, 2.0 ),
+    vec2( 20.0, 2.0 ),
+    vec2(  0.0, 2.0 ),
+    vec2(  0.0, 0.0 ),
+    vec2(  0.0, 0.0 ),
+    vec2( 20.0, 0.0 ),
+    vec2( 20.0, 2.0 ),
+    vec2( 20.0, 2.0 ),
+    vec2(  0.0, 2.0 ),
+    vec2(  0.0, 0.0 ),
     vec2(  0.0, 0.0 ),
     vec2( 20.0, 0.0 ),
     vec2( 20.0, 2.0 ),
@@ -125,6 +151,8 @@ window.onload = function init() {
     //
     //  Load shaders and initialize attribute buffers
     //
+
+    colorCube();
     program = initShaders( gl, "vertex-shader", "fragment-shader" );
     gl.useProgram( program );
     
@@ -208,6 +236,45 @@ window.onload = function init() {
     
 
 }
+
+function colorCube()
+{
+    quad( 1, 0, 3, 2 );
+    quad( 2, 3, 7, 6 );
+    quad( 3, 0, 4, 7 );
+    quad( 6, 5, 1, 2 );
+    quad( 4, 5, 6, 7 );
+    quad( 5, 4, 0, 1 );
+}
+
+function quad(a, b, c, d) 
+{
+    var verticesTemp = [
+        vec3( -0.5, -0.5,  0.5 ),
+        vec3( -0.5,  0.5,  0.5 ),
+        vec3(  0.5,  0.5,  0.5 ),
+        vec3(  0.5, -0.5,  0.5 ),
+        vec3( -0.5, -0.5, -0.5 ),
+        vec3( -0.5,  0.5, -0.5 ),
+        vec3(  0.5,  0.5, -0.5 ),
+        vec3(  0.5, -0.5, -0.5 )
+    ];
+
+    // We need to parition the quad into two triangles in order for
+    // WebGL to be able to render it.  In this case, we create two
+    // triangles from the quad indices
+    
+    //vertex color assigned by the index of the vertex
+    
+    var indices = [ a, b, c, a, c, d ];
+
+    for ( var i = 0; i < indices.length; ++i ) {
+        vertices.push( verticesTemp[indices[i]] );
+    }
+}
+
+
+
 
 var render = function(){
     gl.clear( gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);

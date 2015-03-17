@@ -42,19 +42,19 @@ var mvLoc;
 // Tveir þríhyrningar sem mynda spjald í z=0 planinu
 var vertices = [
     //Flag
-    vec4( -5.0, -1.0, 0.0, 1.0 ),
-    vec4(  5.0, -1.0, 0.0, 1.0 ),
-    vec4(  5.0,  10.0, 0.0, 1.0 ),
-    vec4(  5.0,  10.0, 0.0, 1.0 ),
-    vec4( -5.0,  10.0, 0.0, 1.0 ),
-    vec4( -5.0, -1.0, 0.0, 1.0 ),
+    vec4(  0.0,  0.0, 0.0, 1.0 ),
+    vec4(  5.0,   0.0, 0.0, 1.0 ),
+    vec4(  5.0,   2.5, 0.0, 1.0 ),
+    vec4(  5.0,   2.5, 0.0, 1.0 ),
+    vec4(  0.0,   2.5, 0.0, 1.0 ),
+    vec4(  0.0,   0.0, 0.0, 1.0 ),
     //Pole
     vec4( -1.0,  -1.0, -10.0, 1.0 ),
     vec4(  1.0,  -1.0, -10.0, 1.0 ),
     vec4(  1.0,  -1.0, 0.0, 1.0 ),
     vec4(  1.0,  -1.0, 0.0, 1.0 ),
     vec4( -1.0,  -1.0, 0.0, 1.0 ),
-    vec4( -1.0,  -1.0, -10.0, 1.0 )
+    vec4( -10.0,  -1.0, -10.0, 1.0 )
 ];
 
 //Floor Vertices
@@ -99,10 +99,10 @@ function configureTexture( image ) {
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
     gl.texImage2D( gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image );
     gl.generateMipmap( gl.TEXTURE_2D );
-    //gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE );
-    //gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE );
-    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT );
-    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT );
+    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE );
+    gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE );
+    //gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT );
+    //gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT );
     gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST );
     gl.texParameteri( gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST );
     

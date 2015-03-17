@@ -41,7 +41,7 @@ var proLoc;
 var mvLoc;
 
 // Tveir þríhyrningar sem mynda spjald í z=0 planinu
-var vertices = [/*
+var vertices = [
     //Flag
     vec4(  0.0,  0.0, 0.0, 1.0 ),
     vec4(  5.0,   0.0, 0.0, 1.0 ),
@@ -58,16 +58,6 @@ var vertices = [/*
     vec4( -1.0,  -1.0, 0.0, 1.0 ),
     vec4( -10.0,  -1.0, -10.0, 1.0 )*/
     
-];
-
-//Floor Vertices
-var Fvertices = [
-    vec4( -10.0,  -1.0, 10.0, 1.0 ),
-    vec4(  10.0,  -1.0, 10.0, 1.0 ),
-    vec4(  10.0,  -1.0, 0.0, 1.0 ),
-    vec4(  10.0,  -1.0, 0.0, 1.0 ),
-    vec4( -10.0,  -1.0, 0.0, 1.0 ),
-    vec4( -10.0,  -1.0, 10.0, 1.0 )
 ];
 
 // Mynsturhnit fyrir spjaldið
@@ -297,9 +287,9 @@ var render = function(){
 
     configureTexture( image2 );
     gl.drawArrays( gl.TRIANGLES, 0, numVerticesPole);
-    //configureTexture( image );
+    configureTexture( image );
 
-    //gl.drawArrays( gl.TRIANGLES, numVerticesPole, numVertices);
+    gl.drawArrays( gl.TRIANGLES, numVerticesPole, numVertices);
     
     requestAnimFrame(render);
 }
